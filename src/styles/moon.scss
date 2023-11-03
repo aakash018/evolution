@@ -1,0 +1,43 @@
+.moon {
+    &__main {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+
+        position: relative;
+        background-color: rgb(241, 241, 241);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 100%;
+
+        width: 100px;
+        height: 100px;
+
+        left: 15px;
+        top: 15px;
+        // transform: translate(-30%, -30%);
+        box-shadow:
+            0 0 100px rgba(255, 255, 255, 0.8),
+            0 0 0 40px rgba(255, 255, 255, 0.06),
+            0 0 0 60px rgba(255, 255, 255, 0.027);
+        animation: moon_glow 2s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes moon_glow {
+    0% {
+        transform: scale(1);
+        translate:
+            -50%,
+            -50%;
+    }
+    50% {
+        transform: scale(1.03);
+        translate:
+            -50%,
+            -50%;
+    }
+}

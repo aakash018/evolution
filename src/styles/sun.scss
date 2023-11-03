@@ -1,0 +1,22 @@
+.sun {
+    &__main {
+        width: 130px;
+        height: 130px;
+
+        border-radius: 50%;
+        // background: radial-gradient(circle at 50% 50%, #ffeb7a, white);
+        background-color: white;
+
+        box-shadow: 0 0 200px 150px rgba(255, 255, 255, 0.781);
+        animation: moon_glow 2s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes moon_glow {
+    0% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}

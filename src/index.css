@@ -1,0 +1,18 @@
+:root {
+  --bg-color: #03030a;
+  --cursor-color: #fff;
+  --text-color: #fff;
+  --cursor-color-on-moon: #ff846e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  cursor: none;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
