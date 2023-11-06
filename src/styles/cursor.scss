@@ -1,43 +1,41 @@
 .cursor {
-    position: absolute;
-    z-index: 2;
+  position: absolute;
+  z-index: 2000;
+  pointer-events: none;
+  &_outline {
+    width: 50px;
+    height: 50px;
     pointer-events: none;
-    &_outline {
-        width: 50px;
-        height: 50px;
-        pointer-events: none;
 
-        border-radius: 50%;
-        border: 1px solid var(--cursor-color);
+    border-radius: 50%;
+    border: 1px solid var(--cursor-color);
 
-        display: grid;
-        place-content: center;
+    display: grid;
+    place-content: center;
 
-        position: absolute;
-        transition-duration: 300ms;
-        transition-timing-function: ease-out;
-        box-shadow:
-            0px 0px 5px var(--cursor-color),
-            inset 0 0 5px var(--cursor-color);
-    }
+    position: absolute;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+    box-shadow: 0px 0px 5px var(--cursor-color),
+      inset 0 0 5px var(--cursor-color);
+  }
 
-    &_hovering {
-        border: 1px solid var(--cursor-color-on-moon);
-        pointer-events: none;
+  &_hovering {
+    border: 1px solid var(--cursor-color-on-moon);
+    pointer-events: none;
 
-        box-shadow:
-            0px 0px 5px var(--cursor-color-on-moon),
-            inset 0 0 5px var(--cursor-color-on-moon);
-    }
+    box-shadow: 0px 0px 5px var(--cursor-color-on-moon),
+      inset 0 0 5px var(--cursor-color-on-moon);
+  }
 
-    &_inner {
-        width: 8px;
-        height: 8px;
-        background-color: var(--cursor-color);
-        position: absolute;
-        border-radius: 50%;
-        transition-duration: 100ms;
-        transition-timing-function: ease-out;
-        pointer-events: none;
-    }
+  &_inner {
+    width: 8px;
+    height: 8px;
+    background-color: var(--cursor-color);
+    position: absolute;
+    border-radius: 50%;
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
+    pointer-events: none;
+  }
 }

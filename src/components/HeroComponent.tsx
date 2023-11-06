@@ -59,20 +59,33 @@ const HeroComponent: React.FC = () => {
 
       {theme === "light" && (
         <>
-          <motion.div
-            className="birds"
-            animate={{
-              x: [-90, 2000],
-              transition: {
-                duration: 40,
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: 5,
-              },
-            }}
-          >
-            <div className="bird"></div>
-          </motion.div>
+          <div className="birds">
+            <motion.div
+              animate={{
+                x: [-90, 2000],
+                transition: {
+                  duration: 40,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  delay: 5,
+                },
+              }}
+              className="bird"
+            ></motion.div>
+            <motion.div
+              className="bird"
+              initial={{ y: -10, scale: 0.5 }}
+              animate={{
+                x: [-90, 1500],
+                transition: {
+                  duration: 40,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  delay: 10,
+                },
+              }}
+            ></motion.div>
+          </div>
         </>
       )}
 

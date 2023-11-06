@@ -26,11 +26,19 @@ function App() {
     }
   }, [themeState]);
 
+  const mainContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (mainContainerRef.current) {
+      mainContainerRef.current.focus();
+    }
+  }, [mainContainerRef]);
+
   return (
     <ThemeStateContext.Provider value={[themeState, setThemeState]}>
       <Cursor moonRef={moon} />
       <div>
-        <div className="mainPages">
+        <div className="mainPages" ref={mainContainerRef}>
           <div>
             <div className="moon_container">
               <Moon moonRef={moon} />
@@ -41,8 +49,9 @@ function App() {
             <HeroComponent />
           </div>
           <div>
-            <IntroPage />
+            <IntroPage containerRef={mainContainerRef} />
           </div>
+          <div className="content"></div>
         </div>
       </div>
     </ThemeStateContext.Provider>

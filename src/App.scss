@@ -1,30 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&display=swap");
 body {
-    background: var(--bg-color);
-    font-family: "Oswald", sans-serif;
-    transition: all 0.5s ease-in;
+  background: var(--bg-color);
+  font-family: "Oswald", sans-serif;
+  transition: all 0.5s ease-in;
 }
 
 .moon_container {
-    position: absolute;
+  position: absolute;
 
-    top: 70px;
-    right: 70px;
+  top: 70px;
+  right: 70px;
 }
 
 .sun_container {
-    position: absolute;
-    top: 70px;
-    left: 40px;
+  position: absolute;
+  top: 70px;
+  left: 40px;
 }
 
 .mainPages {
-    position: relative;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 100vh;
-    & > div {
-        scroll-snap-align: start;
-    }
+  position: relative;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+
+  & > div {
+    scroll-snap-align: start;
+  }
 }
