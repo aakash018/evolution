@@ -5,22 +5,25 @@ import HeroComponent from "./components/HeroComponent";
 import Moon from "./components/Moon";
 import Sun from "./components/Sun";
 import IntroPage from "./components/IntroPage";
+import Fire from "./components/pages/Fire";
 
 export const ThemeStateContext = createContext<any>(null);
 
 function App() {
   const moon = useRef<HTMLDivElement>(null);
   const sun = useRef<HTMLDivElement>(null);
-  const [themeState, setThemeState] = useState<"light" | "dark">("light");
+  const [themeState, setThemeState] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     if (themeState === "light") {
       document.documentElement.style.setProperty("--bg-color", "#87CEEB");
       document.documentElement.style.setProperty("--cursor-color", "black");
       document.documentElement.style.setProperty("--text-color", "black");
+      document.documentElement.style.setProperty("--page-color", "white");
     }
     if (themeState === "dark") {
       document.documentElement.style.setProperty("--bg-color", "#03030a");
+      document.documentElement.style.setProperty("--page-color", "#03030a");
       document.documentElement.style.setProperty("--cursor-color", "#fff");
       document.documentElement.style.setProperty("--text-color", "#fff");
     }
@@ -51,7 +54,9 @@ function App() {
           <div>
             <IntroPage containerRef={mainContainerRef} />
           </div>
-          <div className="content"></div>
+          <div className="main-content">
+            <Fire containerRef={mainContainerRef} />
+          </div>
         </div>
       </div>
     </ThemeStateContext.Provider>

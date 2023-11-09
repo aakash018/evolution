@@ -3,6 +3,8 @@
   --cursor-color: #fff;
   --text-color: #fff;
   --cursor-color-on-moon: #ff846e;
+  --page-color: #03030a;
+  --wick-height: 50px;
 }
 
 * {
@@ -16,4 +18,8 @@ html {
   cursor: none;
   color: var(--text-color);
   overflow-x: hidden;
+}
+
+.page-title {
+  font-size: 15rem;
 }
