@@ -6,6 +6,7 @@ import Moon from "./components/Moon";
 import Sun from "./components/Sun";
 import IntroPage from "./components/IntroPage";
 import Fire from "./components/pages/Fire";
+import Agriculture from "./components/pages/Agriculture";
 
 export const ThemeStateContext = createContext<any>(null);
 
@@ -54,9 +55,10 @@ function App() {
           <div>
             <IntroPage containerRef={mainContainerRef} />
           </div>
-          <div className="main-content">
-            <Fire containerRef={mainContainerRef} />
-          </div>
+
+          <Fire containerRef={mainContainerRef} />
+          <Agriculture containerRef={mainContainerRef} />
+          <div>HELLo</div>
         </div>
       </div>
     </ThemeStateContext.Provider>

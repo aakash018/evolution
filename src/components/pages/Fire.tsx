@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../../styles/pages/fire.scss";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import fireWithPeople from "../../assets/fire-with-people.webp";
 
 import Candle from "../Candle";
@@ -187,8 +187,17 @@ const Fire: React.FC<Props> = ({ containerRef }) => {
     [0, 0, 1]
   );
 
+  const isInView = useInView(holderRef);
+
+  useEffect(() => {
+    console.log("VIEW", isInView);
+    if (isInView) {
+      holderRef.current?.click();
+    }
+  }, [isInView]);
+
   return (
-    <div className="fire" ref={holderRef}>
+    <div className="fire" ref={holderRef} onClick={() => console.log("HELLO")}>
       <div className="fire__content_holder">
         <motion.div
           className="fire__title"
@@ -197,7 +206,7 @@ const Fire: React.FC<Props> = ({ containerRef }) => {
           viewport={{ root: containerRef, once: true }}
           style={{ opacity: fire_opacity }}
         >
-          <span className="page-title">FIRE</span>
+          <div className="page-title">FIRE</div>
         </motion.div>
 
         <div className="fire__content">

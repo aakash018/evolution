@@ -1,0 +1,92 @@
+.agriculture {
+  overflow-y: scroll;
+  background-color: var(--page-color);
+  height: 100vh;
+  overflow-x: hidden;
+  //   background-color: aqua;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  // scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__title {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    // background-color: aliceblue;
+
+    &_container {
+      width: 100%;
+      height: 100%;
+      &__video_bg {
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        // overflow-x: hidden;
+        // overflow-y: hidden;
+        video {
+          // display: none;
+          min-width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+          filter: brightness(50%);
+        }
+      }
+
+      &_text {
+        // position: absolute;
+        // top: 0;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url("../../assets/framing-pic.png");
+        background-position: center;
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent !important;
+        background-blend-mode: multiply;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-content: center;
+      }
+    }
+  }
+
+  &__content {
+    height: 2000vh;
+    width: 100%;
+
+    &_infos_container {
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+      // height: 100%;
+    }
+
+    &_infos {
+      position: relative;
+    }
+    &__info {
+      font-size: 17px;
+      text-align: center;
+      width: 100%;
+      position: absolute;
+
+      display: flex;
+      justify-content: center;
+      span {
+        width: 90%;
+      }
+    }
+  }
+}
