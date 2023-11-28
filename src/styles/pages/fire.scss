@@ -9,14 +9,13 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &__content_holder {
     position: relative;
     height: 600vh;
     // background-color: aqua;
-  }
-
-  &::-webkit-scrollbar {
-    display: none;
   }
 
   &__title {
@@ -56,12 +55,12 @@
       }
 
       &_texts {
-        font-size: 17px;
+        font-size: 1.2rem;
         width: 300px;
 
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        justify-content: space-around;
         padding-top: 20px;
 
         position: relative;

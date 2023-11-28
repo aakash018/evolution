@@ -1,18 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import "../../styles/pages/agriculture.scss";
-import img from "../../assets/freesvgorg21040.png";
+import collage_0 from "../../assets/The_Harvesters.jpg";
+import collage_1 from "../../assets/his-farming-1.jpg";
+import collage_2 from "../../assets/ClaySumerianSickle.jpg";
+import collage_3 from "../../assets/Jethro_Tull_seed_drill_(1762).png";
 
 import {
   motion,
   useMotionValueEvent,
   useScroll,
-  useSpring,
   useTransform,
 } from "framer-motion";
 import bgVideo from "../../assets/videoplayback.mp4";
+import ImageWithOverlay from "../ImageWithOverlay";
 
 interface Props {
-  containerRef: React.RefObject<HTMLDivElement>;
+  nextContainerRef: React.RefObject<HTMLDivElement>;
 }
 
 const animationOrder = {
@@ -21,35 +24,38 @@ const animationOrder = {
   introTextScale: 0.25,
   introTextOpacity: 0.3,
   firstTextIntro: 0.35,
-  firstInfoStay: 0.4,
-  firstInfoExit: 0.45,
-  secondInfoIntro: 0.5,
-  secondInfoStay: 0.55,
-  secondInfoExit: 0.6,
-  thirdInfoIntro: 0.65,
-  thirdInfoStay: 0.7,
-  thirdInfoExit: 0.75,
+  firstInfoStay: 0.45,
+  firstInfoExit: 0.5,
+  secondInfoIntro: 0.55,
+  secondInfoStay: 0.65,
+  secondInfoExit: 0.7,
+  thirdInfoIntro: 0.75,
+  thirdInfoStay: 0.85,
+  thirdInfoExit: 0.9,
+  photoCollageIntro: 0.95,
+  photoCollageStay: 1,
 };
 
-const Agriculture: React.FC<Props> = () => {
+const Agriculture: React.FC<Props> = ({ nextContainerRef }) => {
   const holderRef = useRef<HTMLDivElement>(null);
   const bgVideoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress, scrollY } = useScroll({ container: holderRef });
-  const springYProgress = useSpring(scrollYProgress);
+  // const springYProgress = useSpring(scrollYProgress);
   const scale = useTransform(
     scrollYProgress,
     [
       animationOrder.initial,
       animationOrder.introTextScale,
       animationOrder.firstTextIntro,
+      animationOrder.firstInfoExit,
     ],
-    [1, 20, 1]
+    [1, 20, 20, 1]
   );
 
   const x = useTransform(
     scrollYProgress,
     [animationOrder.initial, animationOrder.introTextScale],
-    [0, 600]
+    [0, 100]
   );
 
   const opacity = useTransform(
@@ -81,7 +87,7 @@ const Agriculture: React.FC<Props> = () => {
   );
 
   const x_first_Info = useTransform(
-    springYProgress,
+    scrollYProgress,
 
     [
       animationOrder.initial,
@@ -107,7 +113,7 @@ const Agriculture: React.FC<Props> = () => {
   );
 
   const x_second_Info = useTransform(
-    springYProgress,
+    scrollYProgress,
 
     [
       animationOrder.initial,
@@ -133,7 +139,7 @@ const Agriculture: React.FC<Props> = () => {
   );
 
   const x_third_Info = useTransform(
-    springYProgress,
+    scrollYProgress,
 
     [
       animationOrder.initial,
@@ -151,12 +157,78 @@ const Agriculture: React.FC<Props> = () => {
     ["var(--text-color)", "#ffffff00"]
   );
 
+  const photo_opacity = useTransform(
+    scrollYProgress,
+    [
+      animationOrder.initial,
+      animationOrder.thirdInfoExit,
+      animationOrder.photoCollageIntro,
+    ],
+    [0, 0, 1]
+  );
+
+  const photo_1_y = useTransform(
+    scrollYProgress,
+    [
+      animationOrder.initial,
+      animationOrder.thirdInfoExit,
+      animationOrder.photoCollageIntro,
+    ],
+    [-30, -30, 0]
+  );
+
+  const photo_2_x = useTransform(
+    scrollYProgress,
+    [
+      animationOrder.initial,
+      animationOrder.thirdInfoExit,
+      animationOrder.photoCollageIntro,
+    ],
+    [30, 30, 0]
+  );
+
+  const photo_3_x = useTransform(
+    scrollYProgress,
+    [
+      animationOrder.initial,
+      animationOrder.thirdInfoExit,
+      animationOrder.photoCollageIntro,
+    ],
+    [-30, -30, 0]
+  );
+
+  const photo_4_y = useTransform(
+    scrollYProgress,
+    [
+      animationOrder.initial,
+      animationOrder.thirdInfoExit,
+      animationOrder.photoCollageIntro,
+    ],
+    [30, 30, 0]
+  );
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 1550 && bgVideoRef.current) {
       bgVideoRef.current.playbackRate = 0.5;
       bgVideoRef.current.play();
     } else if (latest < 1550 && bgVideoRef.current) {
       bgVideoRef.current.currentTime = 0;
+    }
+  });
+
+  useEffect(() => {
+    if (holderRef.current) {
+      holderRef.current.addEventListener("scroll", () => {
+        if (holderRef.current) {
+          const isFullyScrolled =
+            holderRef.current.scrollHeight - holderRef.current.scrollTop - 5 ===
+            holderRef.current.clientHeight;
+
+          if (isFullyScrolled) {
+            nextContainerRef.current?.scrollIntoView();
+          }
+        }
+      });
     }
   });
 
@@ -188,7 +260,7 @@ const Agriculture: React.FC<Props> = () => {
         <div className="agriculture__content_infos_container">
           <div className="agriculture__content_infos">
             <motion.div
-              className="agriculture__content__info"
+              className="agriculture__content_infos_info"
               style={{ opacity: opacity_first_Info, x: x_first_Info }}
             >
               <span>
@@ -198,7 +270,7 @@ const Agriculture: React.FC<Props> = () => {
               </span>
             </motion.div>
             <motion.div
-              className="agriculture__content__info"
+              className="agriculture__content_infos_info"
               style={{ opacity: opacity_second_Info, x: x_second_Info }}
             >
               <span>
@@ -210,7 +282,7 @@ const Agriculture: React.FC<Props> = () => {
               </span>
             </motion.div>
             <motion.div
-              className="agriculture__content__info"
+              className="agriculture__content_infos_info"
               style={{ opacity: opacity_third_Info, x: x_third_Info }}
             >
               <span>
@@ -221,8 +293,43 @@ const Agriculture: React.FC<Props> = () => {
                 technology.
               </span>
             </motion.div>
-            <div className="photo-collage">
-              <img src={img} alt="imge" width={"100px"} height={"100px"} />
+            <div className="agriculture__content_infos_photo_collage">
+              <section className="agriculture__content_infos_photo_collage_sec">
+                <motion.div style={{ opacity: photo_opacity, y: photo_1_y }}>
+                  <ImageWithOverlay
+                    img={collage_0}
+                    width={350}
+                    height={300}
+                    overlayText="The Harvesters. Pieter Bruegel – 1565 BC"
+                  />
+                </motion.div>
+                <motion.div style={{ opacity: photo_opacity, x: photo_2_x }}>
+                  <ImageWithOverlay
+                    img={collage_3}
+                    width={"250px"}
+                    height={"300px"}
+                    overlayText="Jethro Tull's seed drill, invented in 1701 BC"
+                  />
+                </motion.div>
+              </section>
+              <section className="agriculture__content_infos_photo_collage_sec">
+                <motion.div style={{ opacity: photo_opacity, x: photo_3_x }}>
+                  <ImageWithOverlay
+                    img={collage_1}
+                    width={"300px"}
+                    height={"200px"}
+                    overlayText="Ploughing with a yoke of horned cattle in Ancient Egypt. 1200 BC"
+                  />
+                </motion.div>
+                <motion.div style={{ opacity: photo_opacity, y: photo_4_y }}>
+                  <ImageWithOverlay
+                    img={collage_2}
+                    width={"300px"}
+                    height={"200px"}
+                    overlayText="Sumerian harvester's sickle, 3000 BC, made from baked clay"
+                  />
+                </motion.div>
+              </section>
             </div>
           </div>
         </div>

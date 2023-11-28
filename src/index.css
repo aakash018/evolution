@@ -18,8 +18,18 @@ html {
   cursor: none;
   color: var(--text-color);
   overflow-x: hidden;
+
+  /* font-size: 1.3rem; */
 }
 
 .page-title {
   font-size: 15rem;
+}
+
+.scroll-bar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+.scroll-bar-hidden::-webkit-scrollbar {
+  display: none;
 }

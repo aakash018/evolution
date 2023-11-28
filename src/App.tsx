@@ -7,6 +7,7 @@ import Sun from "./components/Sun";
 import IntroPage from "./components/IntroPage";
 import Fire from "./components/pages/Fire";
 import Agriculture from "./components/pages/Agriculture";
+import Wheel from "./components/pages/Wheel";
 
 export const ThemeStateContext = createContext<any>(null);
 
@@ -14,6 +15,8 @@ function App() {
   const moon = useRef<HTMLDivElement>(null);
   const sun = useRef<HTMLDivElement>(null);
   const [themeState, setThemeState] = useState<"light" | "dark">("dark");
+
+  const wheelPageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (themeState === "light") {
@@ -55,10 +58,9 @@ function App() {
           <div>
             <IntroPage containerRef={mainContainerRef} />
           </div>
-
           <Fire containerRef={mainContainerRef} />
-          <Agriculture containerRef={mainContainerRef} />
-          <div>HELLo</div>
+          <Agriculture nextContainerRef={wheelPageRef} />
+          <Wheel pageRef={wheelPageRef} />
         </div>
       </div>
     </ThemeStateContext.Provider>
