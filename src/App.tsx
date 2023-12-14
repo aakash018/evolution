@@ -8,6 +8,7 @@ import IntroPage from "./components/IntroPage";
 import Fire from "./components/pages/Fire";
 import Agriculture from "./components/pages/Agriculture";
 import Wheel from "./components/pages/Wheel";
+import Press from "./components/pages/Press";
 
 export const ThemeStateContext = createContext<any>(null);
 
@@ -61,6 +62,7 @@ function App() {
           <Fire containerRef={mainContainerRef} />
           <Agriculture nextContainerRef={wheelPageRef} />
           <Wheel pageRef={wheelPageRef} />
+          <Press />
         </div>
       </div>
     </ThemeStateContext.Provider>
