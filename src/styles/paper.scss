@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap");
+
+.paper {
+    width: 800px;
+    height: 450px;
+    border-radius: 10px;
+    background-image: url("../assets/press/paper_texture.jpg");
+    background-position: center;
+    background-size: cover;
+
+    font-family: "IM Fell DW Pica SC", serif;
+
+    color: rgb(0, 0, 0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px;
+    &__content {
+        font-size: 1.3rem;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        opacity: 0.9;
+    }
+
+    &__image {
+        img {
+            width: 250px;
+            height: 270px;
+        }
+    }
+}
