@@ -250,7 +250,7 @@ const Agriculture: React.FC<Props> = ({ nextContainerRef }) => {
           </motion.div>
           <div className="page-title agriculture__title_container_text">
             <motion.div style={{ opacity, x, scale }}>
-              <motion.span style={{ color: titleColor }}>FRAMING</motion.span>
+              <motion.span style={{ color: titleColor }}>FARMING</motion.span>
             </motion.div>
           </div>
         </div>
