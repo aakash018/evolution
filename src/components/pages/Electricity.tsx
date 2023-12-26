@@ -5,26 +5,37 @@ import { MotionStyle, motion, useScroll, useTransform } from "framer-motion";
 import thunder from "../../assets/electricity/thunder.png";
 import GlassInfoHolder from "../shared/GlassInfoHolder";
 import frankyu from "../../assets/electricity/franku.jpg";
+import michele from "../../assets/electricity/michael.png";
+
+import ThomasPic from "../../assets/electricity/default-PhotoRoom.png-PhotoRoom.png";
+import TeslaPic from "../../assets/electricity/Tesla_circa_1890-PhotoRoom.png-PhotoRoom.png";
 
 const animation_order = {
   initial: 0,
   introTextStay: 0.05,
   introTextExit: 0.09,
   bubblesIntro: 0.1,
-  thunderIntro: 0.12,
-  firstCardIntro: 0.15,
+  thunderIntro: 0.15,
+  firstCardIntro: 0.17,
   firstCardFirstInfoStay: 0.2,
   firstCardFirstInfoExit: 0.25,
   firstCardSecondInfoIntro: 0.27,
-  firstCardSecondInfoStay: 0.35,
-  firstCardSecondInfoExit: 0.4,
-  firstCardThirdInfoIntro: 0.42,
-  firstCardThirdInfoStay: 0.5,
-  firstCardThirdInfoExit: 0.55,
-  firstCardFourthInfoIntro: 0.57,
-  firstCardFourthInfoStay: 0.65,
-  firstCardFourthInfoExit: 0.67,
-  firstCardExit: 0.7,
+  firstCardSecondInfoStay: 0.32,
+  firstCardSecondInfoExit: 0.37,
+  firstCardThirdInfoIntro: 0.4,
+  firstCardThirdInfoStay: 0.45,
+  firstCardThirdInfoExit: 0.5,
+  firstCardFourthInfoIntro: 0.53,
+  firstCardFourthInfoStay: 0.55,
+  firstCardFourthInfoExit: 0.6,
+  firstCardExit: 0.63,
+  michelePhotoIntro: 0.65,
+  micheleStay: 0.7,
+  micheleExit: 0.75,
+  nicolsIntro: 0.8,
+  nicolosStay: 0.85,
+  nicolosExit: 0.9,
+  exitTextIntro: 1,
 };
 
 interface BubbleProps {
@@ -147,6 +158,76 @@ const Electricity: React.FC = () => {
     [0, 0, 1, 1, 0]
   );
 
+  const michalPricture_opacity = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.firstCardFourthInfoExit,
+      animation_order.michelePhotoIntro,
+      animation_order.micheleStay,
+      animation_order.micheleExit,
+    ],
+    [0, 0, 1, 1, 0]
+  );
+
+  const michalInfo_opacity = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.firstCardFourthInfoExit,
+      animation_order.michelePhotoIntro,
+      animation_order.micheleStay,
+      animation_order.micheleExit,
+    ],
+    [0, 0, 1, 1, 0]
+  );
+
+  const michalInfo_x = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.firstCardFourthInfoExit,
+      animation_order.michelePhotoIntro,
+      animation_order.micheleStay,
+      animation_order.micheleExit,
+    ],
+    [20, 20, 0, 0, 20]
+  );
+
+  const nicolosInfo_opacity = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.micheleExit,
+      animation_order.nicolsIntro,
+      animation_order.nicolosStay,
+      animation_order.nicolosExit,
+    ],
+    [0, 0, 1, 1, 0]
+  );
+
+  const nicolosInfo_y = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.micheleExit,
+      animation_order.nicolsIntro,
+      animation_order.nicolosStay,
+      animation_order.nicolosExit,
+    ],
+    [-20, -20, 0, 0, -20]
+  );
+
+  const exitText_opacity = useTransform(
+    scrollYProgress,
+    [
+      animation_order.initial,
+      animation_order.nicolosExit,
+      animation_order.exitTextIntro,
+    ],
+    [0, 0, 1]
+  );
+
   return (
     <div className="electricity " ref={holderRef}>
       <div className="electricity__wrapper">
@@ -182,7 +263,7 @@ const Electricity: React.FC = () => {
 
           <motion.div
             className="electricity__title_container_thunder"
-            style={{ opacity: thunderIntro }}
+            style={{ opacity: thunderIntro, width: "100vw" }}
           >
             <img
               src={thunder}
@@ -256,6 +337,85 @@ const Electricity: React.FC = () => {
                 </div>
               </div>
             </GlassInfoHolder>
+          </motion.div>
+          <motion.div
+            style={{
+              position: "absolute",
+              bottom: "0",
+              left: 0,
+              opacity: michalPricture_opacity,
+            }}
+          >
+            <img src={michele} alt="michel" width={730} height={"auto"} />
+          </motion.div>
+
+          <motion.div
+            style={{
+              position: "absolute",
+              right: 100,
+              opacity: michalInfo_opacity,
+              x: michalInfo_x,
+            }}
+          >
+            <GlassInfoHolder>
+              <div style={{ width: 400 }}>
+                Michael Faraday's work on electromagnetic induction and
+                Faraday's laws of electrolysis in the early 19th century laid
+                the groundwork for understanding the relationship between
+                electricity and magnetism.
+              </div>
+            </GlassInfoHolder>
+          </motion.div>
+
+          <motion.div
+            style={{
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              opacity: nicolosInfo_opacity,
+            }}
+          >
+            <img src={ThomasPic} alt="Thomas" width={430} height={"auto"} />
+          </motion.div>
+          <motion.div
+            style={{
+              position: "absolute",
+              right: 0,
+              bottom: 0,
+              opacity: nicolosInfo_opacity,
+            }}
+          >
+            <img src={TeslaPic} alt="Thomas" width={430} height={"auto"} />
+          </motion.div>
+
+          <motion.div
+            style={{
+              position: "absolute",
+              opacity: nicolosInfo_opacity,
+              y: nicolosInfo_y,
+            }}
+          >
+            <GlassInfoHolder>
+              <div style={{ width: 400 }}>
+                Thomas Edison and Nikola Tesla played pivotal roles in the
+                evolution of electricity: Edison's work contributed to the
+                widespread use of direct current (DC) systems, while Tesla's
+                innovations advanced alternating current (AC) systems,
+                transforming power generation and distribution.
+              </div>
+            </GlassInfoHolder>
+          </motion.div>
+
+          <motion.div
+            style={{
+              position: "absolute",
+              opacity: exitText_opacity,
+              fontSize: "1.2rem",
+            }}
+          >
+            The combined efforts of such visionaries propelled the evolution of
+            electricity, revolutionizing power systems and paving the way for
+            the modern electrical era.
           </motion.div>
         </div>
       </div>

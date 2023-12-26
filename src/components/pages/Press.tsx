@@ -45,7 +45,7 @@ const Press: React.FC = () => {
         className="page-title title"
         style={{ opacity: introTextExit }}
       >
-        Press
+        PRESS
       </motion.div>
       <div className="press__content">
         <div className="press__content_paperHolder">

@@ -13,6 +13,7 @@ import {
 } from "framer-motion";
 import bgVideo from "../../assets/videoplayback.mp4";
 import ImageWithOverlay from "../ImageWithOverlay";
+import { getBrowserName } from "../../browserCheck";
 
 interface Props {
   nextContainerRef: React.RefObject<HTMLDivElement>;
@@ -41,6 +42,11 @@ const Agriculture: React.FC<Props> = ({ nextContainerRef }) => {
   const bgVideoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress, scrollY } = useScroll({ container: holderRef });
   // const springYProgress = useSpring(scrollYProgress);
+
+  const browser = getBrowserName(navigator.userAgent);
+
+  console.log("B", browser);
+
   const scale = useTransform(
     scrollYProgress,
     [
@@ -150,12 +156,16 @@ const Agriculture: React.FC<Props> = ({ nextContainerRef }) => {
     ],
     [-30, -30, 0, 0, 30]
   );
-
-  const titleColor = useTransform(
-    scrollYProgress,
-    [animationOrder.initial, animationOrder.titleColorChange],
-    ["var(--text-color)", "#ffffff00"]
-  );
+  let titleColor;
+  if (browser.includes("Chromium")) {
+    titleColor = "var(--text-color)";
+  } else {
+    titleColor = useTransform(
+      scrollYProgress,
+      [animationOrder.initial, animationOrder.titleColorChange],
+      ["var(--text-color)", "#ffffff00"]
+    );
+  }
 
   const photo_opacity = useTransform(
     scrollYProgress,
