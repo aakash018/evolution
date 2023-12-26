@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/candle.scss";
-import { motion, useAnimate } from "framer-motion";
+import { useAnimate } from "framer-motion";
 const Candle: React.FC = () => {
   const [beforeRef, animateBeforeEle] = useAnimate();
   const [bottomRef, animateBottomEle] = useAnimate();

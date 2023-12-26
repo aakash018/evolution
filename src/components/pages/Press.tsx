@@ -1,13 +1,6 @@
 import { useRef, useState } from "react";
 import "../../styles/pages/press.scss";
-import {
-  motion,
-  useDragControls,
-  useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import PaperDragTiles from "../shared/PaperDragTiles";
 import inventorImg from "../../assets/press/Gr.diana_Johannes_Gutenberg-removebg-preview.png";
